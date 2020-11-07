@@ -1,2 +1,4 @@
-# vim
-My vim setup
+### Content
+
+- vimrc
+- alacritty
