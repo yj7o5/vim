@@ -1,3 +1,5 @@
+set encoding=UTF-8
+
 " Index using spaces instead of tabs
 set expandtab
 
@@ -27,9 +29,15 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle file drawer in/out
-nmap ,n :NERDTreeFind<CR>
-nmap ,m :NERDTreeToggle<CR>
+nmap nf :NERDTreeFind<CR>
+nmap nt :NERDTreeToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Format document
+nnoremap fd gg=G<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " Files Syntax Highlight
 syntax on
@@ -44,15 +52,17 @@ nnoremap <S-x> :noh<CR>
 " NERDTree 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dont open when only single file selected
-let NERDTreeQuitOnOpen = 0
+let g:NERDTreeQuitOnOpen = 0
 " Remove extra noise on UI
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeIgnore=['__pycache__', 'node_modules', '\~$']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Code Completion (CoC 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_disable_startup_warning = 1
+let g:coc_global_extensions=['coc-omnisharp', 'coc-python']
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -60,8 +70,9 @@ let g:coc_disable_startup_warning = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'arcticicestudio/nord-vim'
+" Plug 'ryanoasis/vim-devicons'
+
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
 call plug#end()
-
-
-" Color theme
-colorscheme nord 
