@@ -124,3 +124,7 @@ filetype plugin on
 "
 " Search:
 " :Rg [Pattern] - To search in files or <Leader>f
+"
+" Tmux: 
+" <CR> + b + , - Rename current window
+" <CR> + b + $ - Rename current session
