@@ -11,6 +11,7 @@ shell:
 window:
   decorations: full
   startup_mode: Windowed
+  opacity: 1
 
 font:
   size: 14.0
@@ -78,5 +79,3 @@ colors:
     white: '#aeb3bb'
 
 draw_bold_text_with_bright_colors: false
-
-background_opacity: 1.0
