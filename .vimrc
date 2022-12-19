@@ -62,9 +62,15 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeIgnore=['__pycache__', 'node_modules', '\~$']
 let g:NERDTreeShowLineNumbers=1
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Code Completion (CoC 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
 let g:coc_disable_startup_warning = 1
 " let g:coc_global_extensions=['coc-omnisharp', 'coc-python']
 
@@ -161,3 +167,4 @@ endfunction
 "
 " Search:
 " :Rg [Pattern] - To search in files or <Leader>f
+      
