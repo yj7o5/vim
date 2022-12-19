@@ -61,15 +61,12 @@ let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeIgnore=['__pycache__', 'node_modules', '\~$']
-
+let g:NERDTreeShowLineNumbers=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Code Completion (CoC 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_disable_startup_warning = 1
 " let g:coc_global_extensions=['coc-omnisharp', 'coc-python']
-
-" Symbol 'rn' renaming 
-nmap <Leader>rn <Plug>(coc-rename)
 
 " Use tab for trigger completion with characters ahead and 
 inoremap <silent><expr> <TAB>
@@ -78,6 +75,38 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+" Enable auto-complete for rust
+set completeopt=menu,menuone,preview,noselect,noinsert
+let g:ale_completion_enabled = 1
+let g:ale_linters = {'rust': ['analyzer']}
+
+" KEY SHORTCUTS
+" Rename symbol
+" Usage: use `\rn` to show rename popup
+nmap <Leader>rn <Plug>(coc-rename)
+
+" GoTo code navigation
+" Usage:
+"   `gd` - nav to symbol definition
+"   `gy` - nav to type definition
+"   `gi` - nav to implementation
+"   `gr` - show type references
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Show documentation 
+" Usage: use `K` to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedKeys('K', 'in')
+  endif
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,9 +114,9 @@ call plug#begin(expand('~/.vim/plugged'))
 Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
-" Stable version of cocj
+Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} 
-" Keeping up to date with master
+Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} 
 Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
